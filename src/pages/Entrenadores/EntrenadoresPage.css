@@ -1,0 +1,371 @@
+.entrenadores-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+  animation: trainers-fadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.entrenadores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(315px, 1fr));
+  gap: 20px;
+}
+
+.entrenador-card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(14, 165, 233, 0.14), transparent 30%),
+    rgba(2, 6, 23, 0.34);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.entrenador-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+}
+
+.entrenador-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.18);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(14, 165, 233, 0.18), transparent 32%),
+    rgba(2, 6, 23, 0.42);
+}
+
+.entrenador-card.inactive {
+  opacity: 0.84;
+}
+
+.trainer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.entrenador-card h3 {
+  margin: 22px 0 12px;
+  color: white;
+  font-family: var(--font-display, "Syne", sans-serif);
+  font-size: 25px;
+  font-weight: 850;
+  letter-spacing: -0.045em;
+}
+
+.trainer-specialty {
+  padding: 13px 14px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #bfdbfe;
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.13), rgba(14, 165, 233, 0.08)),
+    rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(96, 165, 250, 0.16);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.trainer-info {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.trainer-info div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+}
+
+.trainer-info svg {
+  flex-shrink: 0;
+  color: rgba(147, 197, 253, 0.92);
+}
+
+.trainer-info span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.trainer-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+@keyframes trainers-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 520px) {
+  .trainer-actions {
+    flex-direction: column;
+  }
+}
+
+/* ============================================================
+   Entrenadores - carrusel normal reutilizado
+   ============================================================ */
+.entrenadores-carousel {
+  position: relative;
+  padding: 20px;
+  border-radius: 32px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(14, 165, 233, 0.13), transparent 28%),
+    rgba(2, 6, 23, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.07) inset,
+    0 24px 70px rgba(0, 0, 0, 0.2);
+}
+
+.entrenadores-carousel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 14%;
+  right: 14%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+}
+
+.entrenadores-carousel-toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.entrenadores-carousel-toolbar > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entrenadores-carousel-toolbar span {
+  color: rgba(125, 211, 252, 0.92);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.entrenadores-carousel-toolbar strong {
+  color: white;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.entrenadores-carousel-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.entrenadores-carousel-controls button,
+.entrenadores-carousel-dots button {
+  border: 0;
+  appearance: none;
+  cursor: pointer;
+}
+
+.entrenadores-carousel-controls button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.entrenadores-carousel-controls button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: rgba(14, 165, 233, 0.18);
+  border-color: rgba(125, 211, 252, 0.32);
+}
+
+.entrenadores-carousel-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.entrenadores-carousel-viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+}
+
+.entrenadores-carousel-track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.entrenadores-carousel-page {
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 16px;
+  min-width: 100%;
+}
+
+.entrenadores-carousel .entrenador-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 378px;
+  padding: 20px;
+  border-radius: 28px;
+}
+
+.entrenadores-carousel .entrenador-card h3 {
+  margin: 18px 0 11px;
+  font-size: clamp(18px, 1.22vw, 22px);
+  line-height: 1.05;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.entrenadores-carousel .trainer-specialty {
+  min-height: 48px;
+  padding: 11px 12px;
+  font-size: 12px;
+}
+
+.entrenadores-carousel .trainer-info {
+  margin-top: 14px;
+  gap: 8px;
+}
+
+.entrenadores-carousel .trainer-info div {
+  font-size: 12px;
+}
+
+.entrenadores-carousel .trainer-actions {
+  margin-top: auto;
+  padding-top: 16px;
+  gap: 9px;
+}
+
+.entrenadores-carousel .trainer-actions .cs-button {
+  min-height: 40px;
+  padding-inline: 12px;
+  font-size: 12px;
+}
+
+.entrenadores-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.entrenadores-carousel-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.24);
+  transition:
+    width 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.entrenadores-carousel-dots button:hover {
+  transform: translateY(-1px);
+  background: rgba(125, 211, 252, 0.72);
+}
+
+.entrenadores-carousel-dots button.active {
+  width: 28px;
+  background: rgba(14, 165, 233, 0.92);
+}
+
+@media (max-width: 1400px) {
+  .entrenadores-carousel-page {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .entrenadores-carousel {
+    padding: 18px;
+  }
+
+  .entrenadores-carousel-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .entrenadores-carousel-controls {
+    align-self: flex-start;
+  }
+
+  .entrenadores-carousel-page {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .entrenadores-carousel-page {
+    grid-template-columns: 1fr;
+  }
+
+  .entrenadores-carousel .trainer-actions {
+    flex-direction: column;
+  }
+}
