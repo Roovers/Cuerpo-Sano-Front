@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/fotos/:path*",
+      "destination": "https://cuerpo-sano-back.onrender.com/fotos/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
