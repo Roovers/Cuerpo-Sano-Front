@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --cs-font-primary: "Roboto Mono", "SFMono-Regular", "Cascadia Code", "Consolas", ui-monospace, monospace;
+  --font-body: var(--cs-font-primary);
+  --font-display: var(--cs-font-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--cs-font-primary);
+  background: #070b14;
+  color: white;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.glass-alert {
+  border-radius: 28px !important;
+  background: rgba(15, 23, 42, 0.219) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  backdrop-filter: blur(26px) !important;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55) !important;
+  color: white !important;
+}
+
+.glass-alert-confirm,
+.glass-alert-cancel {
+  border-radius: 16px !important;
+  padding: 12px 18px !important;
+  font-family: var(--cs-font-primary) !important;
+  font-weight: 800 !important;
+  border: 0 !important;
+}
+
+.glass-alert-confirm {
+  background: linear-gradient(135deg, #ef4444, #be123c) !important;
+}
+
+.glass-alert-cancel {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+select option {
+  color: #ffffff;
+  background: #111827;
+}
