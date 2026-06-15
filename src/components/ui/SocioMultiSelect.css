@@ -1,0 +1,332 @@
+.socio-multi-select {
+  position: relative;
+  width: 100%;
+}
+
+.socio-multi-select.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.socio-multi-trigger {
+  width: 100%;
+  min-height: 64px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  padding: 10px 14px;
+  color: white;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.075);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  text-align: left;
+  transition: 0.18s ease;
+}
+
+.socio-multi-trigger:hover,
+.socio-multi-trigger.active {
+  background: rgba(255, 255, 255, 0.095);
+  border-color: rgba(96, 165, 250, 0.62);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
+.socio-multi-selected-preview,
+.socio-multi-placeholder,
+.socio-multi-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.socio-multi-selected-preview,
+.socio-multi-placeholder {
+  flex: 1;
+}
+
+.socio-multi-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  color: white;
+  font-size: 13px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 22px rgba(14, 165, 233, 0.18);
+}
+
+.socio-multi-avatar.empty {
+  color: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.socio-multi-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.socio-multi-stack {
+  display: flex;
+  align-items: center;
+  min-width: 50px;
+}
+
+.socio-multi-stack span {
+  display: inline-flex;
+  margin-left: -11px;
+}
+
+.socio-multi-stack span:first-child {
+  margin-left: 0;
+}
+
+.socio-multi-stack .socio-multi-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 15px;
+  box-shadow:
+    0 0 0 3px rgba(15, 23, 42, 0.92),
+    0 10px 22px rgba(14, 165, 233, 0.18);
+}
+
+.socio-multi-trigger strong,
+.socio-multi-option strong {
+  display: block;
+  color: white;
+  font-size: 13.5px;
+  font-weight: 900;
+}
+
+.socio-multi-trigger span,
+.socio-multi-option span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.socio-multi-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.socio-multi-status {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  margin-top: 0 !important;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 10.5px !important;
+  font-weight: 900 !important;
+}
+
+.socio-multi-status::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+}
+
+.socio-multi-status.active {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.13);
+  border: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.socio-multi-status.active::before {
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+}
+
+.socio-multi-status.inactive {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+}
+
+.socio-multi-status.inactive::before {
+  background: #f87171;
+}
+
+.socio-multi-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.socio-multi-chips button {
+  min-height: 32px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 10px;
+  color: #dbeafe;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  background: rgba(37, 99, 235, 0.13);
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: 0.18s ease;
+}
+
+.socio-multi-chips button:hover {
+  transform: translateY(-1px);
+  color: white;
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(147, 197, 253, 0.34);
+}
+
+.socio-multi-chips button.clear {
+  color: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.socio-multi-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 95;
+  padding: 10px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(22px);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.socio-multi-search {
+  height: 46px;
+  padding: 0 13px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+}
+
+.socio-multi-search input {
+  width: 100%;
+  height: auto;
+  border: 0;
+  outline: none;
+  padding: 0;
+  color: white;
+  background: transparent;
+}
+
+.socio-multi-search input::placeholder {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.socio-multi-options {
+  max-height: 310px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.socio-multi-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.socio-multi-options::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.socio-multi-option {
+  width: 100%;
+  border: 0;
+  border-radius: 17px;
+  padding: 11px;
+  cursor: pointer;
+  color: white;
+  background: transparent;
+  text-align: left;
+  transition: 0.16s ease;
+}
+
+.socio-multi-option:hover,
+.socio-multi-option.selected {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.socio-multi-option.selected {
+  border: 1px solid rgba(96, 165, 250, 0.22);
+}
+
+.socio-multi-option-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.socio-multi-check {
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: grid !important;
+  place-items: center;
+  color: white !important;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.socio-multi-option.selected .socio-multi-check {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  border-color: rgba(147, 197, 253, 0.45);
+}
+
+.socio-multi-empty {
+  margin: 0;
+  padding: 18px 12px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 13px;
+  text-align: center;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.55);
+  transition: 0.18s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+  color: white;
+}
+
+@media (max-width: 620px) {
+  .socio-multi-trigger {
+    align-items: flex-start;
+  }
+
+  .socio-multi-selected-preview,
+  .socio-multi-placeholder {
+    align-items: flex-start;
+  }
+}
