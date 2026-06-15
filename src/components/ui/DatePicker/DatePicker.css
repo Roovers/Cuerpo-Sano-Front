@@ -1,0 +1,278 @@
+.cs-date-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+}
+
+.cs-date-picker__label {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.cs-date-picker__control {
+  min-height: 52px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  padding: 0 12px 0 14px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  color: #93c5fd;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.055)),
+    rgba(15, 23, 42, 0.72);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.cs-date-picker--sm .cs-date-picker__control {
+  min-height: 44px;
+  border-radius: 15px;
+}
+
+.cs-date-picker:focus-within .cs-date-picker__control {
+  border-color: rgba(96, 165, 250, 0.65);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+}
+
+.cs-date-picker--error .cs-date-picker__control {
+  border-color: rgba(248, 113, 113, 0.55);
+  box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.1);
+}
+
+.cs-date-picker--disabled {
+  opacity: 0.65;
+}
+
+.cs-date-picker__value {
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 750;
+  background: transparent;
+}
+
+.cs-date-picker__value span {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.cs-date-picker__value:disabled {
+  cursor: not-allowed;
+}
+
+.cs-date-picker__clear {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.58);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.cs-date-picker__clear:hover {
+  transform: scale(1.04);
+  color: white;
+  background: rgba(239, 68, 68, 0.18);
+}
+
+.cs-date-picker__message {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.cs-date-picker--error .cs-date-picker__message {
+  color: #fecaca;
+}
+
+.cs-date-picker__popover {
+  z-index: 99999;
+  max-width: calc(100vw - 24px);
+  padding: 16px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.18), transparent 32%),
+    radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.16), transparent 34%),
+    rgba(15, 23, 42, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.56),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  animation: cs-date-pop 0.18s ease both;
+  overflow: hidden;
+}
+
+@keyframes cs-date-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cs-date-picker__header {
+  display: grid;
+  grid-template-columns: 38px 1fr 38px;
+  gap: 10px;
+  align-items: center;
+}
+
+.cs-date-picker__header button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.07);
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.cs-date-picker__header button:hover {
+  transform: translateY(-1px);
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cs-date-picker__selectors {
+  display: grid;
+  grid-template-columns: 1fr 92px;
+  gap: 8px;
+}
+
+.cs-date-picker__selectors select {
+  height: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 14px;
+  padding: 0 10px;
+  color: white;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 850;
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cs-date-picker__selectors option {
+  color: #f8fafc;
+  background: #0f172a;
+}
+
+.cs-date-picker__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.cs-date-picker__weekdays span {
+  display: grid;
+  place-items: center;
+  height: 28px;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 11px;
+  font-weight: 950;
+}
+
+.cs-date-picker__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.cs-date-picker__days button {
+  height: 36px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  color: rgba(255, 255, 255, 0.82);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  background: rgba(255, 255, 255, 0.045);
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.cs-date-picker__days button:hover {
+  transform: translateY(-1px);
+  color: white;
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.cs-date-picker__days button.outside {
+  color: rgba(255, 255, 255, 0.28);
+  background: transparent;
+}
+
+.cs-date-picker__days button.today {
+  border-color: rgba(96, 165, 250, 0.42);
+  color: #bfdbfe;
+}
+
+.cs-date-picker__days button.selected {
+  color: white;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  border-color: rgba(147, 197, 253, 0.28);
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.26);
+}
+
+.cs-date-picker__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.cs-date-picker__footer button {
+  min-height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  padding: 0 12px;
+  color: rgba(255, 255, 255, 0.76);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.cs-date-picker__footer button:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+}
