@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+  --cs-font-primary: "Roboto Mono", "SFMono-Regular", "Cascadia Code", "Consolas", ui-monospace, monospace;
+  --font-body: var(--cs-font-primary);
+  --font-display: var(--cs-font-primary);
+}
+
+html,
+body,
+#root {
+  font-family: var(--cs-font-primary);
+}
+
+body {
+  font-feature-settings: "liga" 1, "calt" 1;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
