@@ -1,0 +1,244 @@
+.socio-select {
+  position: relative;
+  width: 100%;
+}
+
+.socio-select.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.socio-select-trigger {
+  width: 100%;
+  min-height: 64px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 18px;
+  padding: 10px 14px;
+  color: white;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.075);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  text-align: left;
+  transition: 0.18s ease;
+}
+
+.socio-select-trigger:hover,
+.socio-select-trigger.active {
+  background: rgba(255, 255, 255, 0.095);
+  border-color: rgba(96, 165, 250, 0.62);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+}
+
+.socio-select-selected,
+.socio-select-placeholder,
+.socio-select-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.socio-select-selected,
+.socio-select-placeholder {
+  flex: 1;
+}
+
+.socio-select-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  flex-shrink: 0;
+  color: white;
+  font-size: 13px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 22px rgba(14, 165, 233, 0.18);
+}
+
+.socio-select-avatar.empty {
+  color: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.socio-select-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.socio-select-trigger strong,
+.socio-select-option strong {
+  display: block;
+  color: white;
+  font-size: 13.5px;
+  font-weight: 900;
+}
+
+.socio-select-trigger span,
+.socio-select-option span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.socio-select-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.socio-select-status {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  margin-top: 0 !important;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 10.5px !important;
+  font-weight: 900 !important;
+}
+
+.socio-select-status::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+}
+
+.socio-select-status.active {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.13);
+  border: 1px solid rgba(34, 197, 94, 0.22);
+}
+
+.socio-select-status.active::before {
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+}
+
+.socio-select-status.inactive {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+}
+
+.socio-select-status.inactive::before {
+  background: #f87171;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.55);
+  transition: 0.18s ease;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+  color: white;
+}
+
+.socio-select-dropdown {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 10px);
+  z-index: 80;
+  padding: 10px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(22px);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.socio-select-search {
+  height: 46px;
+  padding: 0 13px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.48);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+}
+
+.socio-select-search input {
+  width: 100%;
+  height: auto;
+  border: 0;
+  outline: none;
+  padding: 0;
+  color: white;
+  background: transparent;
+}
+
+.socio-select-search input::placeholder {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.socio-select-options {
+  max-height: 280px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.socio-select-options::-webkit-scrollbar {
+  width: 6px;
+}
+
+.socio-select-options::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.socio-select-option {
+  width: 100%;
+  border: 0;
+  border-radius: 17px;
+  padding: 11px;
+  cursor: pointer;
+  color: white;
+  background: transparent;
+  text-align: left;
+  transition: 0.16s ease;
+}
+
+.socio-select-option:hover,
+.socio-select-option.selected {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.socio-select-option-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.socio-select-check {
+  flex-shrink: 0;
+  color: #93c5fd;
+}
+
+.socio-select-empty {
+  margin: 0;
+  padding: 18px 12px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 13px;
+  text-align: center;
+}
