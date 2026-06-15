@@ -1,0 +1,55 @@
+.cs-button {
+  position: relative;
+  overflow: hidden;
+  border: 0;
+  border-radius: 18px;
+  min-height: 48px;
+  padding: 13px 18px;
+  color: white;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  white-space: nowrap;
+  transition: transform 0.2s var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)), box-shadow 0.2s ease, background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+
+.cs-button--primary {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 18px 36px rgba(37, 99, 235, 0.28);
+}
+
+.cs-button--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 52%);
+  pointer-events: none;
+}
+
+.cs-button--secondary,
+.cs-button--ghost {
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.075);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.cs-button--danger {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.13);
+  border: 1px solid rgba(248, 113, 113, 0.24);
+  box-shadow: none;
+}
+
+.cs-button:hover:not(:disabled) { transform: translateY(-2px); }
+.cs-button--primary:hover:not(:disabled) { box-shadow: 0 22px 46px rgba(37, 99, 235, 0.38); }
+.cs-button--secondary:hover:not(:disabled), .cs-button--ghost:hover:not(:disabled) { color: white; background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.18); }
+.cs-button--danger:hover:not(:disabled) { background: rgba(239, 68, 68, 0.22); border-color: rgba(248, 113, 113, 0.38); }
+.cs-button:active:not(:disabled) { transform: translateY(0) scale(0.99); }
+.cs-button:disabled { opacity: 0.55; cursor: not-allowed; }
+.cs-button--full { width: 100%; }
