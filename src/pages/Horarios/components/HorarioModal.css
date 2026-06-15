@@ -1,0 +1,635 @@
+.horario-modal {
+  position: relative;
+  width: min(960px, 100%);
+  border-radius: 34px;
+  padding: 30px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.16), transparent 34%),
+    rgba(15, 23, 42, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.55);
+}
+
+.horario-modal-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.075);
+  display: grid;
+  place-items: center;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.horario-modal-close:hover {
+  transform: translateY(-1px);
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.horario-modal-header {
+  padding-right: 58px;
+  margin-bottom: 22px;
+}
+
+.horario-modal-header h3 {
+  margin-bottom: 8px;
+}
+
+.horario-modal-header p {
+  margin: 0;
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.schedule-modal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.schedule-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-content: start;
+}
+
+.schedule-compact-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 16px;
+  row-gap: 14px;
+  align-items: start;
+}
+
+.modal-grid input,
+.modal-grid select {
+  height: 48px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  outline: none;
+  border-radius: 16px;
+  padding: 0 14px;
+  color: white;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.modal-grid input:focus,
+.modal-grid select:focus {
+  border-color: rgba(96, 165, 250, 0.65);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+}
+
+.modal-grid select {
+  appearance: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.055)),
+    rgba(15, 23, 42, 0.72);
+}
+
+.modal-grid select option {
+  color: #f8fafc;
+  background: #0f172a;
+}
+
+.schedule-toggle-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.schedule-toggle-field > span {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.schedule-warning {
+  padding: 12px 14px;
+  border-radius: 18px;
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.10);
+  border: 1px solid rgba(245, 158, 11, 0.20);
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.schedule-preview {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+  border-radius: 28px;
+  padding: 22px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(37, 99, 235, 0.16), transparent 34%),
+    rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.07) inset;
+}
+
+.schedule-preview::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18%;
+  right: 18%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+}
+
+.schedule-preview-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.schedule-preview-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
+  color: #bfdbfe;
+  background: rgba(37, 99, 235, 0.14);
+  border: 1px solid rgba(96, 165, 250, 0.20);
+  box-shadow: 0 18px 36px rgba(37, 99, 235, 0.18);
+}
+
+.preview-day {
+  width: fit-content;
+  margin-top: 16px;
+  padding: 8px 11px;
+  border-radius: 999px;
+  color: #bfdbfe;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.schedule-preview h4 {
+  margin: 16px 0 12px;
+  color: white;
+  font-family: var(--font-display, "Syne", sans-serif);
+  font-size: 24px;
+  font-weight: 850;
+  letter-spacing: -0.045em;
+}
+
+.preview-time {
+  padding: 16px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(124, 58, 237, 0.12)),
+    rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(96, 165, 250, 0.18);
+}
+
+.preview-time svg {
+  color: #93c5fd;
+}
+
+.preview-time strong {
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+}
+
+.preview-details {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.preview-details div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+}
+
+.preview-details svg {
+  flex-shrink: 0;
+  color: rgba(147, 197, 253, 0.92);
+}
+
+.preview-details span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.preview-trainer-check {
+  margin-top: 14px;
+  padding: 12px;
+  border-radius: 18px;
+  color: #bbf7d0;
+  background: rgba(34, 197, 94, 0.10);
+  border: 1px solid rgba(34, 197, 94, 0.18);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.preview-trainer-check.warning {
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.10);
+  border-color: rgba(245, 158, 11, 0.18);
+}
+
+.preview-trainer-check svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.horario-modal-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.horario-modal-actions button {
+  min-width: 150px;
+}
+
+@media (max-width: 900px) {
+  .schedule-modal-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .schedule-compact-row {
+    grid-template-columns: 1fr;
+  }
+
+  .horario-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .horario-modal-actions button {
+    width: 100%;
+  }
+}
+
+
+.schedule-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+  pointer-events: auto;
+}
+
+.schedule-drawer-scrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(2, 6, 23, 0.62);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+}
+
+.schedule-drawer {
+  position: relative;
+  z-index: 2;
+  width: min(1040px, calc(100vw - 28px));
+  height: calc(100vh - 28px);
+  margin: 14px;
+  overflow-y: auto;
+  border-radius: 34px;
+  animation: schedule-drawer-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.schedule-drawer::-webkit-scrollbar {
+  width: 7px;
+}
+
+.schedule-drawer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.schedule-drawer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+
+@keyframes schedule-drawer-in {
+  from {
+    opacity: 0;
+    transform: translateX(32px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.schedule-days-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.schedule-days-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.schedule-days-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.schedule-days-actions button {
+  min-height: 32px;
+  border: 0;
+  border-radius: 999px;
+  padding: 0 11px;
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.075);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 900;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.schedule-days-actions button:hover {
+  transform: translateY(-1px);
+  color: white;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.schedule-days-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.schedule-day-chip {
+  min-height: 62px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 18px;
+  padding: 8px;
+  color: rgba(255, 255, 255, 0.66);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.schedule-day-chip:hover {
+  transform: translateY(-1px);
+  color: white;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.schedule-day-chip.active {
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.94), rgba(124, 58, 237, 0.88)),
+    rgba(37, 99, 235, 0.4);
+  border-color: rgba(147, 197, 253, 0.32);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+}
+
+.schedule-day-chip strong {
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.schedule-day-chip span {
+  font-size: 10.5px;
+  font-weight: 850;
+  opacity: 0.78;
+}
+
+.schedule-days-field p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .schedule-drawer {
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+    margin: 10px;
+  }
+}
+
+@media (max-width: 620px) {
+  .schedule-days-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+/* Reversión del drawer: volvemos al modal centrado, pero fijo a viewport y con scroll interno. */
+.schedule-drawer-backdrop,
+.schedule-drawer-scrim {
+  all: unset;
+}
+
+.schedule-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: rgba(2, 6, 23, 0.62);
+  backdrop-filter: blur(14px);
+  overflow-y: auto;
+}
+
+/* Centers vertically when content is shorter than viewport */
+.schedule-modal-backdrop::before {
+  content: "";
+  flex: 1 0 0;
+  min-height: 0;
+}
+
+.schedule-modal-backdrop::after {
+  content: "";
+  flex: 1 0 0;
+  min-height: 0;
+}
+
+.schedule-centered-modal {
+  position: relative;
+  z-index: 1;
+  width: min(980px, 100%);
+  /* No fixed max-height: let content breathe, backdrop scrolls */
+  animation: schedule-modal-in 0.24s cubic-bezier(0.16, 1, 0.3, 1) both;
+  flex-shrink: 0;
+}
+
+.schedule-centered-modal::-webkit-scrollbar {
+  width: 7px;
+}
+
+.schedule-centered-modal::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.schedule-centered-modal::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+}
+
+@keyframes schedule-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .schedule-modal-backdrop {
+    padding: 12px;
+  }
+}
+
+/* FIX DEFINITIVO MODAL HORARIOS
+   El modal se renderiza por React Portal en document.body.
+   Estas clases únicas evitan conflictos con .modal-backdrop, drawer y layouts del módulo. */
+.horario-modal-portal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(37, 99, 235, 0.18), transparent 34%),
+    rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  animation: horario-portal-backdrop-in 0.26s ease both;
+}
+
+.horario-modal-portal-backdrop .horario-modal-portal-card {
+  position: relative;
+  width: min(960px, 100%);
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  border-radius: 34px;
+  padding: 30px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.16), transparent 34%),
+    rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.06) inset,
+    0 42px 110px rgba(0, 0, 0, 0.66),
+    0 0 80px rgba(37, 99, 235, 0.08);
+  animation: horario-portal-card-in 0.34s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.horario-modal-portal-backdrop .horario-modal-portal-card::-webkit-scrollbar {
+  width: 7px;
+}
+
+.horario-modal-portal-backdrop .horario-modal-portal-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.horario-modal-portal-backdrop .horario-modal-portal-card::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.horario-modal-portal-backdrop .horario-modal-close {
+  z-index: 5;
+}
+
+@keyframes horario-portal-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes horario-portal-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .horario-modal-portal-backdrop {
+    padding: 12px;
+  }
+
+  .horario-modal-portal-backdrop .horario-modal-portal-card {
+    max-height: calc(100dvh - 24px);
+    padding: 24px;
+  }
+}
+
+@media (max-width: 620px) {
+  .horario-modal-portal-backdrop {
+    place-items: start center;
+  }
+}
