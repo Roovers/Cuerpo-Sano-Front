@@ -1,0 +1,262 @@
+.cs-time-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+}
+
+.cs-time-picker__label {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.cs-time-picker__control {
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  padding: 0 10px 0 12px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  color: #93c5fd;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.04)),
+    rgba(15, 23, 42, 0.72);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+  cursor: pointer;
+}
+
+.cs-time-picker--sm .cs-time-picker__control {
+  height: 34px;
+  border-radius: 10px;
+}
+
+.cs-time-picker:focus-within .cs-time-picker__control {
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+.cs-time-picker--error .cs-time-picker__control {
+  border-color: rgba(248, 113, 113, 0.55);
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.08);
+}
+
+.cs-time-picker--disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.cs-time-picker__value {
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  background: transparent;
+}
+
+.cs-time-picker__value span {
+  color: rgba(255, 255, 255, 0.38);
+  font-weight: 450;
+}
+
+.cs-time-picker__value:disabled {
+  cursor: not-allowed;
+}
+
+.cs-time-picker__clear {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.07);
+  transition:
+    background 0.15s,
+    color 0.15s;
+  flex-shrink: 0;
+}
+
+.cs-time-picker__clear:hover {
+  color: white;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.cs-time-picker__chevron {
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.cs-time-picker__message {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.cs-time-picker--error .cs-time-picker__message {
+  color: #fecaca;
+}
+
+.cs-time-picker__popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 9999;
+  width: min(230px, calc(100vw - 24px));
+  padding: 12px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(37, 99, 235, 0.14), transparent 28%),
+    radial-gradient(circle at 88% 8%, rgba(124, 58, 237, 0.12), transparent 30%),
+    rgba(13, 20, 38, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  animation: cs-time-pop 0.15s ease both;
+}
+
+@keyframes cs-time-pop {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cs-time-picker__spinner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  align-items: center;
+  gap: 0;
+}
+
+.cs-time-picker__spinner--24h {
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.cs-time-picker__sep {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 3px;
+  user-select: none;
+  line-height: 1;
+  align-self: center;
+}
+
+.cs-time-picker__sep--ghost {
+  opacity: 0;
+}
+
+.cs-time-picker__col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.cs-time-picker__col-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  user-select: none;
+}
+
+.cs-time-picker__spin-btn {
+  width: 100%;
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  transition:
+    background 0.12s,
+    color 0.12s,
+    transform 0.1s;
+}
+
+.cs-time-picker__spin-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.11);
+  transform: translateY(-1px);
+}
+
+.cs-time-picker__spin-btn:active {
+  transform: translateY(0);
+}
+
+.cs-time-picker__spin-val {
+  width: 100%;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 850;
+  color: white;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.01em;
+  user-select: none;
+  cursor: default;
+}
+
+.cs-time-picker__spin-val--period {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.cs-time-picker__confirm {
+  width: 100%;
+  height: 32px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.28);
+  transition:
+    opacity 0.15s,
+    transform 0.1s;
+}
+
+.cs-time-picker__confirm:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.cs-time-picker__confirm:active {
+  transform: translateY(0);
+}
