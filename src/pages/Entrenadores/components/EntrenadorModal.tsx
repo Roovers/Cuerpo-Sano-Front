@@ -122,6 +122,17 @@ export default function EntrenadorModal({
     reader.readAsDataURL(file);
   };
 
+  const handleCertificadoImageChange = (file?: File) => {
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error("Seleccioná un archivo de imagen válido.");
+      return;
+    }
+
+    toast("La carga del certificado todavía no está implementada.");
+  };
+
   const handleSubmit = async () => {
     if (!form.nombre.trim() || !form.apellido.trim()) {
       toast.error("Ingresá nombre y apellido del entrenador.");
@@ -196,8 +207,8 @@ export default function EntrenadorModal({
             <span>{entrenador ? "Editar entrenador" : "Nuevo entrenador"}</span>
             <h3>{entrenador ? "Modificar datos" : "Registrar entrenador"}</h3>
             <p>
-              Cargá los datos profesionales, contacto, foto de perfil y disponibilidad del
-              entrenador.
+              Cargá los datos profesionales, contacto, foto de perfil y
+              disponibilidad del entrenador.
             </p>
           </div>
         </div>
@@ -322,6 +333,23 @@ export default function EntrenadorModal({
                   type="file"
                   accept="image/*"
                   onChange={(e) => handleFotoChange(e.target.files?.[0])}
+                />
+              </label>
+            </div>
+
+            <div className="trainer-photo-field">
+              <span>Imagen del certificado</span>
+
+              <label className="trainer-photo-upload">
+                <BadgeCheck size={17} />
+                <strong>Subir certificado</strong>
+                <small>JPG, PNG o WebP — campo visual por ahora</small>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) =>
+                    handleCertificadoImageChange(e.target.files?.[0])
+                  }
                 />
               </label>
             </div>
