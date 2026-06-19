@@ -41,6 +41,7 @@ const initialForm: EntrenadorRequest = {
   telefono: "",
   email: "",
   fotoBase64: "",
+  certificadoBase64: "",
   activo: true,
 };
 
@@ -53,6 +54,7 @@ export default function EntrenadorModal({
 }: Props) {
   const [form, setForm] = useState<EntrenadorRequest>(initialForm);
   const [previewFoto, setPreviewFoto] = useState("");
+  const [previewCertificado, setPreviewCertificado] = useState("");
   const [loading, setLoading] = useState(false);
 
   const nombreCompleto = useMemo(() => {
@@ -83,13 +85,16 @@ export default function EntrenadorModal({
         telefono: entrenador.telefono || "",
         email: entrenador.email || "",
         fotoBase64: "",
+        certificadoBase64: "",
         activo: entrenador.activo,
       });
 
       setPreviewFoto(entrenador.fotoUrl || "");
+      setPreviewCertificado(entrenador.certificadoUrl || "");
     } else {
       setForm(initialForm);
       setPreviewFoto("");
+      setPreviewCertificado("");
     }
   }, [entrenador, open]);
 
@@ -122,15 +127,31 @@ export default function EntrenadorModal({
     reader.readAsDataURL(file);
   };
 
-  const handleCertificadoImageChange = (file?: File) => {
+  const handleCertificadoChange = (file?: File) => {
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {
-      toast.error("Seleccioná un archivo de imagen válido.");
+      toast.error("Seleccioná una imagen válida para el certificado.");
       return;
     }
 
-    toast("La carga del certificado todavía no está implementada.");
+    if (file.size > 2 * 1024 * 1024) {
+      toast.error("La imagen del certificado no debería superar los 2 MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const result = reader.result as string;
+      setPreviewCertificado(result);
+      setForm((prev) => ({
+        ...prev,
+        certificadoBase64: result.split(",")[1],
+      }));
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async () => {
@@ -182,6 +203,7 @@ export default function EntrenadorModal({
         email: form.email?.trim() || "",
         especialidadId: Number(form.especialidadId),
         fotoBase64: form.fotoBase64 || "",
+        certificadoBase64: form.certificadoBase64 || "",
       });
 
       onClose();
@@ -207,8 +229,8 @@ export default function EntrenadorModal({
             <span>{entrenador ? "Editar entrenador" : "Nuevo entrenador"}</span>
             <h3>{entrenador ? "Modificar datos" : "Registrar entrenador"}</h3>
             <p>
-              Cargá los datos profesionales, contacto, foto de perfil y
-              disponibilidad del entrenador.
+              Cargá los datos profesionales, contacto, foto de perfil y disponibilidad del
+              entrenador.
             </p>
           </div>
         </div>
@@ -341,17 +363,29 @@ export default function EntrenadorModal({
               <span>Imagen del certificado</span>
 
               <label className="trainer-photo-upload">
-                <BadgeCheck size={17} />
-                <strong>Subir certificado</strong>
-                <small>JPG, PNG o WebP — campo visual por ahora</small>
+                <Camera size={17} />
+                <strong>
+                  {previewCertificado ? "Cambiar certificado" : "Subir certificado"}
+                </strong>
+                <small>Campo opcional. JPG, PNG o WebP hasta 2 MB</small>
                 <input
                   type="file"
                   accept="image/*"
-                  onChange={(e) =>
-                    handleCertificadoImageChange(e.target.files?.[0])
-                  }
+                  onChange={(e) => handleCertificadoChange(e.target.files?.[0])}
                 />
               </label>
+
+              {previewCertificado && (
+                <a
+                  className="trainer-certificate-preview"
+                  href={previewCertificado}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img src={previewCertificado} alt="Certificado del entrenador" />
+                  <span>Ver certificado cargado</span>
+                </a>
+              )}
             </div>
           </div>
 
@@ -408,7 +442,9 @@ export default function EntrenadorModal({
                 <ShieldCheck size={16} />
                 <span>
                   {form.certificado
-                    ? "Certificación vigente"
+                    ? previewCertificado
+                      ? "Certificación vigente con imagen"
+                      : "Certificación vigente"
                     : "Certificación pendiente"}
                 </span>
               </div>
@@ -448,4 +484,3 @@ export default function EntrenadorModal({
     </div>
   );
 }
-
