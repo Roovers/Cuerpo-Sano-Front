@@ -11,6 +11,7 @@ export interface Entrenador {
   telefono?: string;
   email?: string;
   fotoUrl?: string;
+  certificadoUrl?: string;
   activo: boolean;
 }
 
@@ -23,6 +24,7 @@ export interface EntrenadorRequest {
   telefono?: string;
   email?: string;
   fotoBase64?: string;
+  certificadoBase64?: string;
   activo: boolean;
 }
 
@@ -60,7 +62,17 @@ export const eliminarEntrenador = async (id: number) => {
   return response.data;
 };
 
+export interface EntrenadorCertificadoResponse {
+  entrenadorId: number;
+  nombre: string;
+  apellido: string;
+  certificado: boolean;
+  certificadoUrl?: string;
+}
+
 export const consultarCertificadoEntrenador = async (id: number) => {
-  const response = await api.get(`/api/entrenadores/${id}/certificado`);
+  const response = await api.get<EntrenadorCertificadoResponse>(
+    `/api/entrenadores/${id}/certificado`
+  );
   return response.data;
 };
